@@ -1,31 +1,29 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-int main()
-{
-    int m,n,i,j,ponds=0;
+char map[1007][1007];
+
+void flag(int row,int col,int row_max,int col_max){
+    if(map[row][col]=='~'&&row>=0&&row<row_max&&col>=0&&col<col_max){
+        map[row][col]='.'; // 把相連的水域都轉成陸地
+        flag(row-1,col,row_max,col_max);
+        flag(row+1,col,row_max,col_max);
+        flag(row,col-1,row_max,col_max);
+        flag(row,col+1,row_max,col_max);
+    }
+}
+
+int main(){
+    int m,n,i,j,count=0;
     scanf("%d%d",&m,&n);
-    char maps[m+1][n+1];
-    for(i=0;i<=n;++i) maps[0][i]='.';
-    for(i=0;i<=m;++i) maps[i][0]='.';
-    for(i=1;i<=m;++i){
-        for(j=1;j<=n;++j){
-            scanf("%c",&maps[i][j]);
-            if((maps[i-1][j]=='~')||(maps[i][j-1]=='~')) maps[i][j]='.';
+    for(i=0;i<m;++i)    scanf("%s",map[i]);
+    for(i=0;i<m;++i){
+        for(j=0;j<n;++j){
+            if(map[i][j]=='~'){
+                count++;
+                flag(i,j,m,n);
+            }
         }
     }
-    // Line 18~23 to show the changed maps
-    for(i=0;i<=m;++i){
-        for(j=0;j<=n;++j){
-            printf("%c ",maps[i][j]);
-        }
-        printf("\n");
-    }
-    for(i=1;i<=m;++i){
-        for(j=1;j<=n;++j){
-            if(maps[i][j]=='~') ponds++;
-        }
-    }
-    printf("%d\n",ponds);
+    printf("%d\n",count);
     return 0;
 }

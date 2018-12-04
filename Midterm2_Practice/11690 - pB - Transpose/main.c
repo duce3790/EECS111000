@@ -11,17 +11,20 @@ void Print(int m, int n, int matrix[][500] ) {
     }
 }
 void Transpose(int *row, int *col, int matrix[][500]){
-    int i,j,tmp;
+    int i,j,tmp[500][500];
     for(i=0;i<*row;++i){
         for(j=0;j<*col;++j){
-            tmp=matrix[i][j];
-            matrix[i][j]=matrix[j][i];
-            matrix[j][i]=tmp;
+            tmp[j][i]=matrix[i][j];
         }
     }
-    tmp=*row;
+    i=*row;
     *row=*col;
-    *col=tmp;
+    *col=i;
+    for(i=0;i<*row;++i){
+        for(j=0;j<*col;++j){
+            matrix[i][j]=tmp[i][j];
+        }
+    }
 }
 
 int32_t main(){
