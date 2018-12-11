@@ -17,11 +17,11 @@ int route(int row, int col, int i, int dir){
         time++;
     }
     if((row==1&&col==1)||(row==1&&col==w)||
-            (row==h&&col==w)||(row==h&&col==1)) return 0;
-    else if(dir==0) return route(row-1,col+1,i+1,0);
-    else if(dir==1) return route(row+1,col+1,i+1,1);
-    else if(dir==2) return route(row+1,col-1,i+1,2);
-    else if(dir==3) return route(row-1,col-1,i+1,3);
+       (row==h&&col==w)||(row==h&&col==1)) return 0;
+    else if(dir==0) return route(1,col+(row-1),i+1,0);
+    else if(dir==1) return route(row+(w-col),w,i+1,1);
+    else if(dir==2) return route(h,col-(h-row),i+1,2);
+    else if(dir==3) return route(row-(col-1),1,i+1,3);
 }
 
 int main()
