@@ -4,6 +4,7 @@
 int h,w,time=0,k;
 
 int route(int row, int col, int dir){
+    //dir 0=up-right 1=down-right 2=down-left 3=up-left
     if(row==1||col==1||row==h||col==w){
         if(time==k-1){
         printf("(%d,%d)",row,col);
