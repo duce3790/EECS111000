@@ -13,10 +13,14 @@ int main()
         scanf("%s%s%lld",s,t,&div);
         int i,lens=strlen(s),lent=strlen(t),flag=0;
         lens=max(lens,lent);
+        //加法跟進位分開處理才不會有bug
         // 大數加法
+        for(i=0;i<lens;++i)
+            add[i]=(s[lens-i-1]-'0')+(t[lens-i-1]-'0');
+        // 大數進位
         for(i=0;i<lens;++i){
-            add[i]+=((s[lens-i-1]-'0')+(t[lens-i-1]-'0'))%10;
-            add[i+1]+=((s[lens-i-1]-'0')+(t[lens-i-1]-'0'))/10;
+            add[i+1]+=(add[i]/10);
+            add[i]%=10;
         }
         // 大數除法
         for(i=lens;i>0;--i){
@@ -24,7 +28,7 @@ int main()
             add[i]/=div;
         }
         add[0]/=div;
-        for(i=lens+1;i>=0;--i){
+        for(i=lens;i>=0;--i){
             if(add[i]!=0) flag=1; //flag用來吃掉0
             if(add[i]!=0||flag==1) printf("%lld",add[i]);
         }
