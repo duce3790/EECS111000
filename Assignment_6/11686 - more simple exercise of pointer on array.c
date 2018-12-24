@@ -3,11 +3,12 @@
 #include <stdlib.h>
 
 void array_exchanger(int* array_a, int* array_b, int length) {
-	int temp,i;
+    int *temp;
+	int i;
 	for(i=0;i<length;++i){
-		temp=*(array_b+i);
-		*(array_b+i)=*(array_a+i);
-		*(array_a+i)=temp;
+		temp=array_b+i;
+		array_b+i=array_a+i;
+		array_a+i=temp;
 	}
 }
 
@@ -41,5 +42,5 @@ int main() {
     for (i = 1; i < length; i++) {
         printf(" %d", array_b[i]);
     }
-    
+
 }
