@@ -34,7 +34,7 @@ int main(int argc, const char * argv[]) {
             temp += ( a[j] >> i) % 2;
         }
         if (n - temp >= temp) { //if 0 is more than 1
-            arr_k[i] = 0; //than the same digit place of k shoul be 0.
+            arr_k[i] = 0; //than the same digit place of k should be 0.
         }
         else {
             arr_k[i] = 1; //otherwise it should be to 1

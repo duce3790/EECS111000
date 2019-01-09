@@ -21,7 +21,7 @@ Node* Create_List(Node* head, int data) {
 
     while (curPtr != NULL) {
         prePtr = curPtr;
-        curPtr = curPtr->next;
+        curPtr = curPtr->next;  //必須要有不然迴圈不會結束
     }
 
     if (prePtr == NULL) {
